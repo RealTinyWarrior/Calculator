@@ -1,13 +1,11 @@
 import "./index.css";
 import { useState, useEffect } from "react";
-import { Route, Routes, Link } from "react-router-dom";
 
 export default function App() {
     let firstSet = ["AC", "DEL", "(-1)", "+", 7, 8, 9, "-", 4, 5, 6, "×", 1, 2, 3, "÷", 0, ".", "="];
     let secondSet = ["%", "√", "x^", "sin", 7, 8, 9, "cos", 4, 5, 6, "tan", 1, 2, 3, "π", 0, "e", "="];
 
     const [mathMode, shiftMathMode] = useState([123, "⌨"]);
-    const [linkPage, setLinkPage] = useState("/convert");
     const [symbol, setSymbol] = useState(firstSet);
     const [dlMode, setDlMode] = useState("☪");
     const [value, setValue] = useState(0);
@@ -142,14 +140,6 @@ export default function App() {
                         {mathMode[1]}
                     </button>
 
-                    <Link
-                        id="swap-btn"
-                        to={linkPage}
-                        onClick={(e) => setLinkPage((prev) => (prev == "/convert" ? "/" : "/convert"))}
-                    >
-                        &nbsp;♻
-                    </Link>
-
                     <div
                         id="dark-light-mode"
                         onClick={(e) => {
@@ -161,10 +151,7 @@ export default function App() {
                     </div>
                 </div>
 
-                <Routes>
-                    <Route path="/" element={<Calculator />} />
-                    <Route path="/convert" element={<Converter />} />
-                </Routes>
+                <Calculator />
             </div>
         </div>
     );
